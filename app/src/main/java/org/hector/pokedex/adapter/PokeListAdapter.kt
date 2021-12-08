@@ -16,25 +16,7 @@ class PokeListAdapter (
     private val clickListener: PokeClickListener
     ) : RecyclerView.Adapter<PokeCardViewHolder>() {
 
-    /*class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
-        private val sprite = view.findViewById<ImageView>(R.id.sprite_pokemon)
-        private val name = view.findViewById<TextView>(R.id.nombre_pokemon)
-
-        fun bind(pokemon: Pokemon, context: Context){
-            super.itemView
-            name.text = pokemon.name
-            Glide.with(context)
-                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon.id+".png")
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(sprite)
-        }
-    }*/
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokeCardViewHolder {
-        /*val view = LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.item_pokemon, parent, false)*/
         val from = LayoutInflater.from(parent.context)
         val binding =  ItemPokemonBinding.inflate(from, parent, false)
         return PokeCardViewHolder(binding, clickListener)

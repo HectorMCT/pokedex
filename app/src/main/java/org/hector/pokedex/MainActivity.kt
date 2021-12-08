@@ -24,10 +24,8 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var retrofit : Retrofit
-
-    private lateinit var recyclerView: RecyclerView
-    private var pokeListAdapter: PokeListAdapter? = null
+    private var pokeListAdapter = PokeListAdapter(this, ArrayList(), this)
+    private val layoutManage = GridLayoutManager(this,2)
 
     private var offset : Int = 0
     private var loading : Boolean = true
@@ -37,48 +35,46 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Construcción de la instancia de retrofit
-        retrofit = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        pokeListAdapter = PokeListAdapter(this, ArrayList(), this)
-
         loading = true
-        obtenerDatosPoke()
+        obtenerDatosPokemon()
         setUpUI()
 
     }
 
     //configuramos el RecyclerView
     private fun setUpUI(){
-        recyclerView = binding.recyclerView
-        recyclerView.setHasFixedSize(true)
-        val layoutManager = GridLayoutManager(this,2)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = pokeListAdapter
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if(dy > 0){
-                    val visibleItemCount = layoutManager.childCount
-                    val totalItemCount = layoutManager.itemCount
-                    val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
+        binding.recyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = layoutManage
+            adapter = pokeListAdapter
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if(dy > 0){
+                        val visibleItemCount = layoutManage.childCount
+                        val totalItemCount = layoutManage.itemCount
+                        val pastVisibleItems = layoutManage.findFirstVisibleItemPosition()
 
-                    if (loading) {
-                        if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                            loading = false
-                            offset += 20
-                            obtenerDatosPoke()
+                        if (loading) {
+                            if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                                loading = false
+                                offset += 20
+                                obtenerDatosPokemon()
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
+        }
     }
 
-    private fun obtenerDatosPoke() {
+    private fun obtenerDatosPokemon() {
+
+        //Construcción de la instancia de retrofit
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://pokeapi.co/api/v2/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
         //obteniendo la interfaz donde se define la API
         val endpoint = retrofit.create(PokeServices::class.java)
@@ -88,28 +84,22 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
         pokeCall.enqueue(object : Callback<PokeList> {
             //imprimimos algo si no nos llegó respuesta
             override fun onFailure(call: Call<PokeList>, t: Throwable) {
-                Log.e("error","Error: $t")
+                Log.e("Error","Error: $t")
             }
 
             //mostramos los archivos solo si el resultado es 200
             override fun onResponse(call: Call<PokeList>, response: Response<PokeList>) {
                 loading = true
                 if(response.isSuccessful) {
+
                     val pokeResponse = response.body()
 
                     if (pokeResponse != null) {
                         pokeResponse.results?.forEach {
                             it.name = it.name.substring(0, 1).uppercase(Locale.getDefault()) + it.name.substring(1)
-                            it.id = it.url?.split("/")!![6]?.toInt()
+                            it.id = it.url?.split("/")!![6].toInt()
                         }
-                    }
-
-                    if (pokeResponse != null) {
-                        pokeListAdapter?.addListPokemon(pokeResponse.results)
-                    }
-
-                    pokeResponse?.results?.forEach {
-                        Log.e("POKEMON","Pokemon ${it.url}")
+                        pokeListAdapter.addListPokemon(pokeResponse.results)
                     }
 
                 } else{

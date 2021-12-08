@@ -11,8 +11,6 @@ class PokeCardViewHolder(
     private val cardViewHolder: ItemPokemonBinding,
     private val clickListener: PokeClickListener
 ) : RecyclerView.ViewHolder(cardViewHolder.root){
-    //private val sprite = view.findViewById<ImageView>(R.id.sprite_pokemon)
-    //private val name = view.findViewById<TextView>(R.id.nombre_pokemon)
 
     fun bind(pokemon: Pokemon, context: Context){
         super.itemView
@@ -22,11 +20,7 @@ class PokeCardViewHolder(
             .centerCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(cardViewHolder.spritePokemon)
-        /*Glide.with(context)
-            .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon.id+".png")
-            .centerCrop()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(sprite)*/
+
         cardViewHolder.moreBtn.setOnClickListener {
             clickListener.onClick(pokemon)
         }
