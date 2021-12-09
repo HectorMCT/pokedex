@@ -10,6 +10,7 @@ import org.hector.pokedex.databinding.ActivityPokedetailBinding
 import org.hector.pokedex.model.POKEMON_ID
 import org.hector.pokedex.model.PokemonDetail
 import org.hector.pokedex.model.Move
+import org.hector.pokedex.services.ApiClient
 import org.hector.pokedex.services.PokeServices
 import org.hector.pokedex.services.StatService
 import retrofit2.Call
@@ -37,10 +38,7 @@ class PokeDetailActivity : AppCompatActivity() {
     private fun obtenerDatosPokemon(pokemonID: Int) {
 
         //Construcción de la instancia de retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = ApiClient.apiClient()
 
         val endpoint = retrofit.create(PokeServices::class.java)
 
@@ -57,13 +55,11 @@ class PokeDetailActivity : AppCompatActivity() {
                 if(response.isSuccessful) {
                     val pokeResponse = response.body()
                     if (pokeResponse != null) {
-                        //Log.e("POKEMON","ID: ${pokeResponse.stats}")
-                        pokeResponse.moves.forEach {
+                        /*pokeResponse.moves.forEach {
 
                             callMoves(it.move.url.split("/")[6].toInt())
 
-                        }
-                        //Log.d("MOVES","MOVES: ${pokeResponse.moves}")
+                        }*/
                         setUpUI(pokeResponse)
                     }
                 } else{
@@ -78,17 +74,12 @@ class PokeDetailActivity : AppCompatActivity() {
 
         with(Glide.with(this@PokeDetailActivity)){
             load(pokeResponse.sprites.frontDefault).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFront)
-            load(pokeResponse.sprites.backDefault).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteBack)
-            load(pokeResponse.sprites.backShiny).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteBackShiny)
             load(pokeResponse.sprites.frontShiny).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFrontShiny)
         }
     }
 
     private fun callMoves(statID: Int){
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = ApiClient.apiClient()
         val endpoint = retrofit.create(StatService::class.java)
         val pokeCall = endpoint.getStat(statID)
         pokeCall.enqueue(object : Callback<Move> {

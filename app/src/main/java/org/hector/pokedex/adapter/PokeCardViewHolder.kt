@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.hector.pokedex.databinding.ItemPokemonBinding
 import org.hector.pokedex.model.Pokemon
+import org.hector.pokedex.services.ApiClient
 
 class PokeCardViewHolder(
     private val cardViewHolder: ItemPokemonBinding,
@@ -16,7 +17,7 @@ class PokeCardViewHolder(
         super.itemView
         cardViewHolder.nombrePokemon.text = pokemon.name
         Glide.with(context)
-            .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon.id+".png")
+            .load(ApiClient.SPRITE_URL+pokemon.id+".png")
             .centerCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(cardViewHolder.spritePokemon)

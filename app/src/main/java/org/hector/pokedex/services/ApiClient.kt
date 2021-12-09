@@ -1,0 +1,41 @@
+package org.hector.pokedex.services
+
+import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+
+object ApiClient {  //please use your own url
+
+    const val SPRITE_URL: String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+    private const val BASE_URL:String = "https://pokeapi.co/api/v2/"
+    private const val TIMEOUT_CALL_SECONDS = 30L
+
+    fun apiClient(): Retrofit {
+
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .connectTimeout(TIMEOUT_CALL_SECONDS, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT_CALL_SECONDS, TimeUnit.SECONDS)
+            .writeTimeout(TIMEOUT_CALL_SECONDS, TimeUnit.SECONDS)
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+    }
+
+}

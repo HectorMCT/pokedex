@@ -12,6 +12,7 @@ import org.hector.pokedex.databinding.ActivityMainBinding
 import org.hector.pokedex.model.POKEMON_ID
 import org.hector.pokedex.model.PokeList
 import org.hector.pokedex.model.Pokemon
+import org.hector.pokedex.services.ApiClient
 import org.hector.pokedex.services.PokeListServices
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
     private lateinit var binding: ActivityMainBinding
 
     private var pokeListAdapter = PokeListAdapter(this, ArrayList(), this)
-    private val layoutManage = GridLayoutManager(this,2)
+    private val layoutManage = GridLayoutManager(this,3)
 
     private var offset : Int = 0
     private var loading : Boolean = true
@@ -72,10 +73,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
     private fun obtenerDatosPokemon() {
 
         //Construcción de la instancia de retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = ApiClient.apiClient()
 
         //obteniendo la interfaz donde se define la API
         val endpoint = retrofit.create(PokeListServices::class.java)
