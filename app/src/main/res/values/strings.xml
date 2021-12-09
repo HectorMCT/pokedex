@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">pokedex</string>
     <string name="action_1">more</string>
+
+    <string name="lenguage">en</string>
+
+    <!-- STATS -->
+    <string name="st_hp">HP</string>
+    <string name="st_at">Attack</string>
+    <string name="st_df">Defense</string>
+    <string name="st_sa">Special Attack</string>
+    <string name="st_sd">Special Defense</string>
+    <string name="st_sp">Speed</string>
 </resources>

@@ -1,17 +1,18 @@
 package org.hector.pokedex
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.hector.pokedex.adapter.PokeClickListener
 import org.hector.pokedex.adapter.PokeListAdapter
 import org.hector.pokedex.databinding.ActivityMainBinding
+import org.hector.pokedex.model.POKEMON_ID
 import org.hector.pokedex.model.PokeList
 import org.hector.pokedex.model.Pokemon
-import org.hector.pokedex.services.PokeServices
+import org.hector.pokedex.services.PokeListServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
             .build()
 
         //obteniendo la interfaz donde se define la API
-        val endpoint = retrofit.create(PokeServices::class.java)
+        val endpoint = retrofit.create(PokeListServices::class.java)
 
         val pokeCall = endpoint.getPokemon(20, this.offset)
 
@@ -111,10 +112,8 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
     }
 
     override fun onClick(poke: Pokemon) {
-        //val intent = Intent(applicationContext, PokeDetailActivity::class.java)
-        //intent.putExtra(BOOK_ID_EXTRA, book.id)
-        //startActivity(intent)
-        Log.e("POKEMON","NAME: ${poke.name}")
-        Toast.makeText(this, "POKEMON - NAME: ${poke.name}", Toast.LENGTH_SHORT).show()
+        val intent = Intent(applicationContext, PokeDetailActivity::class.java)
+        intent.putExtra(POKEMON_ID, poke.id)
+        startActivity(intent)
     }
 }

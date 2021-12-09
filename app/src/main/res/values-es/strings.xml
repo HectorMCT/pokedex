@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">pokedex</string>
+
+    <string name="action_1">more</string>
+
+    <string name="lenguage">es</string>
+
+    <!-- STATS -->
+    <string name="st_hp">PS</string>
+    <string name="st_at">Ataque</string>
+    <string name="st_df">Defensa</string>
+    <string name="st_sa">Ataque Especial</string>
+    <string name="st_sd">Defensa Especial</string>
+    <string name="st_sp">Velocidad</string>
+</resources>

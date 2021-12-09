@@ -1,13 +1,11 @@
 package org.hector.pokedex.services
 
-import org.hector.pokedex.model.PokeList
+import org.hector.pokedex.model.PokemonDetail
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface PokeServices {
-
-    @GET("pokemon")
-    fun getPokemon(@Query("limit") limit: Int, @Query("offset") offset: Int): Call<PokeList>
-
+    @GET("pokemon/{id}/")
+    fun getPokemon(@Path("id") id: Int): Call<PokemonDetail>
 }

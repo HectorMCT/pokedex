@@ -1,6 +1,7 @@
 package org.hector.pokedex.model
 
-import com.google.gson.annotations.SerializedName
+
+val POKEMON_ID = "POKEMON_ID"
 
 data class Pokemon (
     var id: Int,
