@@ -1,6 +1,6 @@
-package org.hector.pokedex.services
+package org.hector.pokedex.data.api
 
-import org.hector.pokedex.model.PokeList
+import org.hector.pokedex.data.model.PokeList
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

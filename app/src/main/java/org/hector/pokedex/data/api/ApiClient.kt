@@ -1,4 +1,4 @@
-package org.hector.pokedex.services
+package org.hector.pokedex.data.api
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -33,7 +33,7 @@ object ApiClient {  //please use your own url
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
     }

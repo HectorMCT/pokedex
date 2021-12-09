@@ -1,4 +1,4 @@
-package org.hector.pokedex.model
+package org.hector.pokedex.data.model
 
 data class Move(
     val id: Int,

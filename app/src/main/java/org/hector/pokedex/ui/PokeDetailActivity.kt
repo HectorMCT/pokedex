@@ -1,4 +1,4 @@
-package org.hector.pokedex
+package org.hector.pokedex.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,18 +6,17 @@ import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import org.hector.pokedex.R
 import org.hector.pokedex.databinding.ActivityPokedetailBinding
-import org.hector.pokedex.model.POKEMON_ID
-import org.hector.pokedex.model.PokemonDetail
-import org.hector.pokedex.model.Move
-import org.hector.pokedex.services.ApiClient
-import org.hector.pokedex.services.PokeServices
-import org.hector.pokedex.services.StatService
+import org.hector.pokedex.data.model.POKEMON_ID
+import org.hector.pokedex.data.model.PokemonDetail
+import org.hector.pokedex.data.model.Move
+import org.hector.pokedex.data.api.ApiClient
+import org.hector.pokedex.data.api.PokeServices
+import org.hector.pokedex.data.api.StatService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class PokeDetailActivity : AppCompatActivity() {
 
@@ -93,7 +92,9 @@ class PokeDetailActivity : AppCompatActivity() {
                 if(response.isSuccessful) {
                     val pokeResponse = response.body()
                     if (pokeResponse != null) {
-                        Log.d("STAT","STAT ID: ${pokeResponse.names.find { it.language.name==getString(R.string.lenguage) }?.name}")
+                        Log.d("STAT","STAT ID: ${pokeResponse.names.find { it.language.name==getString(
+                            R.string.lenguage
+                        ) }?.name}")
                         pokeResponse.names.find { it.language.name==getString(R.string.lenguage) }?.name?.let {
                             moves.add(it)
                         }

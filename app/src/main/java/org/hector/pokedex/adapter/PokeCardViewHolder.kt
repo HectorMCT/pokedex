@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.hector.pokedex.databinding.ItemPokemonBinding
-import org.hector.pokedex.model.Pokemon
-import org.hector.pokedex.services.ApiClient
+import org.hector.pokedex.data.model.Pokemon
+import org.hector.pokedex.data.api.ApiClient
 
 class PokeCardViewHolder(
     private val cardViewHolder: ItemPokemonBinding,

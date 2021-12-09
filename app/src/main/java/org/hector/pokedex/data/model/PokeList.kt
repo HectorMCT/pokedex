@@ -1,6 +1,4 @@
-package org.hector.pokedex.model
-
-import java.util.*
+package org.hector.pokedex.data.model
 
 class PokeList {
     var results: MutableList<Pokemon>? = arrayListOf()

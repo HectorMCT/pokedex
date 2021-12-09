@@ -1,4 +1,4 @@
-package org.hector.pokedex.model
+package org.hector.pokedex.data.model
 
 
 val POKEMON_ID = "POKEMON_ID"

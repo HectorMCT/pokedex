@@ -1,4 +1,4 @@
-package org.hector.pokedex.model
+package org.hector.pokedex.data.model
 
 data class NamedApiResource(
     val name: String,

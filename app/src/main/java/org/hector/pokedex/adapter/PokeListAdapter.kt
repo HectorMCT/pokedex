@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.hector.pokedex.model.Pokemon
+import org.hector.pokedex.data.model.Pokemon
 
 import org.hector.pokedex.databinding.ItemPokemonBinding
 

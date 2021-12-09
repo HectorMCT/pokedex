@@ -1,4 +1,4 @@
-package org.hector.pokedex
+package org.hector.pokedex.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,16 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import org.hector.pokedex.adapter.PokeClickListener
 import org.hector.pokedex.adapter.PokeListAdapter
 import org.hector.pokedex.databinding.ActivityMainBinding
-import org.hector.pokedex.model.POKEMON_ID
-import org.hector.pokedex.model.PokeList
-import org.hector.pokedex.model.Pokemon
-import org.hector.pokedex.services.ApiClient
-import org.hector.pokedex.services.PokeListServices
+import org.hector.pokedex.data.model.POKEMON_ID
+import org.hector.pokedex.data.model.PokeList
+import org.hector.pokedex.data.model.Pokemon
+import org.hector.pokedex.data.api.ApiClient
+import org.hector.pokedex.data.api.PokeListServices
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import kotlin.collections.ArrayList
 
