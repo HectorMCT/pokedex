@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.e("TEST_POKE","CREATE: $loading")
         loading = true
         obtenerDatosPokemon()
         setUpUI()
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
 
     //configuramos el RecyclerView
     private fun setUpUI(){
+        Log.e("TEST_POKE","UI: $offset")
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = layoutManage
@@ -86,6 +88,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
 
             //mostramos los archivos solo si el resultado es 200
             override fun onResponse(call: Call<PokeList>, response: Response<PokeList>) {
+                Log.e("TEST_POKE","CALL: $response")
                 loading = true
                 if(response.isSuccessful) {
 
@@ -108,6 +111,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
     }
 
     override fun onClick(poke: Pokemon) {
+        Log.e("TEST_POKE","POKE: $poke")
         val intent = Intent(applicationContext, PokeDetailActivity::class.java)
         intent.putExtra(POKEMON_ID, poke.id)
         startActivity(intent)

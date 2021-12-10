@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 data class PokemonDetail (
     val id: Int,
-    val name : String? = "",
+    var name : String? = "",
     val baseExperience: Int,
     val height: Int,
     val isDefault: Boolean,
     val order: Int,
     val weight: Int,
     val stats: List<PokemonStat>,
-    val moves: List<PokemonMove>,
+    //val moves: List<PokemonMove>,
     //val types: List<PokemonType>,
     val sprites : Sprites,
 )

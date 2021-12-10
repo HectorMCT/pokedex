@@ -7,10 +7,15 @@
     <string name="lenguage">es</string>
 
     <!-- STATS -->
-    <string name="st_hp">PS</string>
-    <string name="st_at">Ataque</string>
-    <string name="st_df">Defensa</string>
-    <string name="st_sa">Ataque Especial</string>
-    <string name="st_sd">Defensa Especial</string>
-    <string name="st_sp">Velocidad</string>
+    <string name="st_hp">PS %1$d/255</string>
+    <string name="st_at">Ataque %1$d/255</string>
+    <string name="st_df">Defensa %1$d/255</string>
+    <string name="st_sa">Ataque Especial %1$d/255</string>
+    <string name="st_sd">Defensa Especial %1$d/255</string>
+    <string name="st_sp">Velocidad %1$d/255</string>
+    <string name="stats_title">Estadisticas</string>
+
+
+    <string name="normal">Normal</string>
+    <string name="shiny">Shiny</string>
 </resources>

@@ -5,10 +5,13 @@
     <string name="lenguage">en</string>
 
     <!-- STATS -->
-    <string name="st_hp">HP</string>
-    <string name="st_at">Attack</string>
-    <string name="st_df">Defense</string>
-    <string name="st_sa">Special Attack</string>
-    <string name="st_sd">Special Defense</string>
-    <string name="st_sp">Speed</string>
+    <string name="st_hp">HP %1$d/255</string>
+    <string name="st_at">Attack %1$d/255</string>
+    <string name="st_df">Defense %1$d/255</string>
+    <string name="st_sa">Special Attack %1$d/255</string>
+    <string name="st_sd">Special Defense %1$d/255</string>
+    <string name="st_sp">Speed %1$d/255</string>
+    <string name="stats_title">Stats</string>
+    <string name="normal">Normal</string>
+    <string name="shiny">Shiny</string>
 </resources>
