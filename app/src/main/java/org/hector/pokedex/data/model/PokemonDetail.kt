@@ -11,8 +11,8 @@ data class PokemonDetail (
     val order: Int,
     val weight: Int,
     val stats: List<PokemonStat>,
-    val moves: List<PokemonMove>,
-    //val types: List<PokemonType>,
+    //val moves: List<PokemonMove>,
+    val types: List<PokemonType>,
     val sprites : Sprites,
 )
 
@@ -45,8 +45,8 @@ data class PokemonMove(
 )
 
 data class PokemonMoveVersion(
-    /*val moveLearnMethod: NamedApiResource,
-    val versionGroup: NamedApiResource,*/
+    val moveLearnMethod: NamedApiResource,
+    val versionGroup: NamedApiResource,
     @SerializedName("level_learned_at")
     val levelLearnedAt: Int
 )

@@ -1,4 +1,4 @@
-package org.hector.pokedex.ui
+package org.hector.pokedex.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -59,6 +59,7 @@ class PokeDetailActivity : AppCompatActivity() {
                             callMoves(it.move.url.split("/")[6].toInt())
 
                         }*/
+                        Log.e("POKE","Detail: ${pokeResponse}")
                         setUpUI(pokeResponse)
                     }
                 } else{
@@ -71,7 +72,7 @@ class PokeDetailActivity : AppCompatActivity() {
 
     private fun setUpUI(pokeResponse: PokemonDetail) {
 
-        with(Glide.with(this@PokeDetailActivity)){
+        with(Glide.with(this)){
             load(pokeResponse.sprites.frontDefault).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFront)
             load(pokeResponse.sprites.frontShiny).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFrontShiny)
         }

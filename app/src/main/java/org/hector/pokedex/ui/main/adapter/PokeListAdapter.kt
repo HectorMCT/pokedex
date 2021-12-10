@@ -1,4 +1,4 @@
-package org.hector.pokedex.adapter
+package org.hector.pokedex.ui.main.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context

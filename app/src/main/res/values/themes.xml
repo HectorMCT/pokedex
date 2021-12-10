@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Pokedex" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Pokedex" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,5 +12,42 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="Poke.CPI.HP" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="trackCornerRadius">24dp</item>
+        <item name="indicatorColor">@color/progressBarColor_HP</item>
+    </style>
+
+    <style name="Poke.CPI.AT" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="trackCornerRadius">24dp</item>
+        <item name="indicatorColor">@color/progressBarColor_Attack</item>
+    </style>
+
+    <style name="Poke.CPI.DF" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="trackCornerRadius">24dp</item>
+        <item name="indicatorColor">@color/progressBarColor_Defense</item>
+    </style>
+
+    <style name="Poke.CPI.SA" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="trackCornerRadius">24dp</item>
+        <item name="indicatorColor">@color/progressBarColor_SAttack</item>
+    </style>
+
+    <style name="Poke.CPI.SD" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="trackCornerRadius">24dp</item>
+        <item name="indicatorColor">@color/progressBarColor_SDefense</item>
+    </style>
+
+    <style name="Poke.CPI.SP" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="trackThickness">20dp</item>
+        <item name="trackCornerRadius">24dp</item>
+        <item name="indicatorColor">@color/progressBarColor_Speed</item>
     </style>
 </resources>

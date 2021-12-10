@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="progressBarColor_HP">#FF00C853</color>
+    <color name="progressBarColor_Attack">#FFFF1744</color>
+    <color name="progressBarColor_Defense">#FF2979FF</color>
+    <color name="progressBarColor_SAttack">#FFD500F9</color>
+    <color name="progressBarColor_SDefense">#FF1DE9B6</color>
+    <color name="progressBarColor_Speed">#FFFFAB00</color>
+
 </resources>

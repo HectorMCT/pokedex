@@ -1,4 +1,4 @@
-package org.hector.pokedex.adapter
+package org.hector.pokedex.ui.main.adapter
 
 import org.hector.pokedex.data.model.Pokemon
 

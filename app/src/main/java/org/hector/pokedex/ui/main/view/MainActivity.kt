@@ -1,28 +1,33 @@
-package org.hector.pokedex.ui
+package org.hector.pokedex.ui.main.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.hector.pokedex.adapter.PokeClickListener
-import org.hector.pokedex.adapter.PokeListAdapter
+import org.hector.pokedex.ui.main.adapter.PokeClickListener
+import org.hector.pokedex.ui.main.adapter.PokeListAdapter
 import org.hector.pokedex.databinding.ActivityMainBinding
 import org.hector.pokedex.data.model.POKEMON_ID
 import org.hector.pokedex.data.model.PokeList
 import org.hector.pokedex.data.model.Pokemon
 import org.hector.pokedex.data.api.ApiClient
 import org.hector.pokedex.data.api.PokeListServices
+import kotlin.collections.ArrayList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity(), PokeClickListener {
 
     private lateinit var binding: ActivityMainBinding
+
+    //private lateinit var viewModel: MainViewModel
 
     private var pokeListAdapter = PokeListAdapter(this, ArrayList(), this)
     private val layoutManage = GridLayoutManager(this,3)
@@ -37,9 +42,18 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
 
         loading = true
         obtenerDatosPokemon()
+        //setupViewModel()
         setUpUI()
+        //setupObservers()
 
     }
+
+    /*private fun setupViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(ApiHelper(ApiClient.apiClient().create(PokeListServices::class.java)))
+        ).get(MainViewModel::class.java)
+    }*/
 
     //configuramos el RecyclerView
     private fun setUpUI(){
@@ -60,6 +74,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
                                 loading = false
                                 offset += 20
                                 obtenerDatosPokemon()
+                                //setupObservers()
                             }
                         }
                     }
@@ -67,6 +82,31 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
             })
         }
     }
+
+    /*private fun setupObservers() {
+        viewModel.getPokemons(20, this.offset).observe(this, Observer {
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        binding.recyclerView.visibility = View.VISIBLE
+                        //progressBar.visibility = View.GONE
+                        loading = true
+                        resource.data?.let { users -> retrieveList(users) }
+                    }
+                    Status.ERROR -> {
+                        binding.recyclerView.visibility = View.VISIBLE
+                        //progressBar.visibility = View.GONE
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    }
+                    Status.LOADING -> {
+                        //progressBar.visibility = View.VISIBLE
+                        binding.recyclerView.visibility = View.GONE
+                    }
+                }
+            }
+        })
+    }*/
+
 
     private fun obtenerDatosPokemon() {
 
@@ -109,7 +149,16 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
 
     override fun onClick(poke: Pokemon) {
         val intent = Intent(applicationContext, PokeDetailActivity::class.java)
+        //Log.e("POKEMON",": $poke")
         intent.putExtra(POKEMON_ID, poke.id)
         startActivity(intent)
+    }
+
+    private fun retrieveList(pokemons: PokeList) {
+        pokemons.results?.forEach {
+            it.name = it.name.substring(0, 1).uppercase(Locale.getDefault()) + it.name.substring(1)
+            it.id = it.url?.split("/")!![6].toInt()
+        }
+        pokeListAdapter.addListPokemon(pokemons.results)
     }
 }

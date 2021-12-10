@@ -1,4 +1,4 @@
-package org.hector.pokedex.adapter
+package org.hector.pokedex.ui.main.adapter
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

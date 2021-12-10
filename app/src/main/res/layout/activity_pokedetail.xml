@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PokeDetailActivity">
+    tools:context=".ui.main.view.PokeDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/image_cl"
@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/habilidades"
         >
 
         <ImageView
@@ -41,5 +41,102 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/habilidades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_cl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st_hp"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/determinate_linear_indicator_hp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Poke.CPI.HP"
+            tools:progress="80" />
+
+        <TextView
+            android:id="@+id/at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st_at"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/determinate_linear_indicator_at"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Poke.CPI.AT"
+            tools:progress="45" />
+
+        <TextView
+            android:id="@+id/df"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st_df"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/determinate_linear_indicator_df"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Poke.CPI.DF"
+            tools:progress="60" />
+
+        <TextView
+            android:id="@+id/sa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st_sa"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/determinate_linear_indicator_sa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Poke.CPI.SA"
+            tools:progress="90" />
+
+        <TextView
+            android:id="@+id/sd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st_sd"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/determinate_linear_indicator_sd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Poke.CPI.SD"
+            tools:progress="30" />
+
+
+        <TextView
+            android:id="@+id/sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st_sp"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/determinate_linear_indicator_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Poke.CPI.SP"
+            tools:progress="70" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
