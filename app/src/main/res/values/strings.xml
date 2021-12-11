@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">pokedex</string>
+    <string name="app_name">PokeDex</string>
     <string name="action_1">more</string>
 
     <string name="lenguage">en</string>
+
+    <string name="poke_name">#%1$d %2$s</string>
 
     <!-- STATS -->
     <string name="st_hp">HP %1$d/255</string>
@@ -12,6 +14,11 @@
     <string name="st_sd">Special Defense %1$d/255</string>
     <string name="st_sp">Speed %1$d/255</string>
     <string name="stats_title">Stats</string>
+
+    <string name="peso">Height %1$.2f kg.</string>
+    <string name="altura">Weight %1$.2f m.</string>
+
     <string name="normal">Normal</string>
     <string name="shiny">Shiny</string>
+    <string name="search_title">Search</string>
 </resources>

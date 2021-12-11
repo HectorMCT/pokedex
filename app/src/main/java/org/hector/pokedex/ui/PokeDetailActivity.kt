@@ -63,7 +63,7 @@ class PokeDetailActivity : AppCompatActivity() {
                         }*/
                         pokeResponse.name =  pokeResponse.name?.substring(0, 1)?.uppercase(Locale.getDefault()) + pokeResponse.name?.substring(1)
                         setUpUI(pokeResponse)
-                        Log.e("POKE-STAT", "STATS ${pokeResponse.stats}")
+                        Log.e("POKE-STAT", "STATS ${pokeResponse}")
                     }
                 } else{
                     Log.e("Not200","Error not 200: $response")
@@ -75,7 +75,10 @@ class PokeDetailActivity : AppCompatActivity() {
 
     private fun setUpUI(pokeResponse: PokemonDetail) {
 
-        binding.pokeName.text = pokeResponse.name
+        binding.pokeName.text = getString(R.string.poke_name,pokeResponse.order,pokeResponse.name)
+
+        binding.peso.text = getString(R.string.peso, (pokeResponse.weight.toDouble()/10))
+        binding.altura.text = getString(R.string.altura, (pokeResponse.height.toDouble()/10))
 
         binding.hp.text = getString(R.string.st_hp, pokeResponse.stats.find { it.stat.name == "hp" }?.baseStat!!)
         binding.at.text = getString(R.string.st_at, pokeResponse.stats.find { it.stat.name == "attack" }?.baseStat!!)
@@ -105,9 +108,9 @@ class PokeDetailActivity : AppCompatActivity() {
         with(Glide.with(this@PokeDetailActivity)){
             load(pokeResponse.sprites.frontDefault).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFront)
             load(pokeResponse.sprites.frontShiny).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFrontShiny)
-        }
+        }/*
         binding.shiny.visibility = View.VISIBLE
-        binding.norm.visibility = View.VISIBLE
+        binding.norm.visibility = View.VISIBLE*/
     }
 
     private fun callMoves(statID: Int){

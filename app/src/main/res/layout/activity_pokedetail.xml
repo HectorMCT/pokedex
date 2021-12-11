@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sprite_front"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/peso"
             app:layout_constraintEnd_toStartOf="@+id/shiny"
             android:layout_marginEnd="24dp"
             android:text="@string/normal"
@@ -75,11 +75,34 @@
             android:text="@string/shiny"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sprite_front_shiny"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/peso"
             app:layout_constraintStart_toEndOf="@+id/norm"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/peso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shiny"
+            app:layout_constraintBottom_toTopOf="@+id/altura"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/altura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/peso"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,8 +131,8 @@
             android:id="@+id/hp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/st_hp"
             android:textColor="@color/black"
+            android:layout_marginStart="16dp"
             android:textStyle="bold"/>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -122,8 +145,8 @@
             android:id="@+id/at"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/st_at"
             android:textColor="@color/black"
+            android:layout_marginStart="16dp"
             android:textStyle="bold"/>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -136,8 +159,8 @@
             android:id="@+id/df"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/st_df"
             android:textColor="@color/black"
+            android:layout_marginStart="16dp"
             android:textStyle="bold"/>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -150,7 +173,7 @@
             android:id="@+id/sa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/st_sa"
+            android:layout_marginStart="16dp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
@@ -164,7 +187,7 @@
             android:id="@+id/sd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/st_sd"
+            android:layout_marginStart="16dp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
@@ -179,7 +202,7 @@
             android:id="@+id/sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/st_sp"
+            android:layout_marginStart="16dp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
