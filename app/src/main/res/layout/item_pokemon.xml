@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:background="@color/backgroundAlt"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white_12"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,8 +25,9 @@
                 android:id="@+id/sprite_pokemon"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_margin="24dp"
                 android:layout_gravity="center_horizontal"
-                />
+                android:contentDescription="@string/normal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,9 +38,16 @@
                 <!-- Title, secondary and supporting text -->
                 <TextView
                     android:id="@+id/nombre_pokemon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="12dp"
                     android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+
                     />
 
             </LinearLayout>

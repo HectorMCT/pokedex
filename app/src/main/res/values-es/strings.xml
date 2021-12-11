@@ -15,10 +15,10 @@
     <string name="st_sa">Ataque Especial %1$d/255</string>
     <string name="st_sd">Defensa Especial %1$d/255</string>
     <string name="st_sp">Velocidad %1$d/255</string>
-    <string name="stats_title">Estadisticas</string>
+    <string name="stats_title">Puntos base</string>
 
-    <string name="peso">Peso %1$.2f kg.</string>
-    <string name="altura">Altura %1$.2f m.</string>
+    <string name="peso">Peso %1$.1f KG</string>
+    <string name="altura">Altura %1$.1f M</string>
 
     <string name="normal">Normal</string>
     <string name="shiny">Shiny</string>

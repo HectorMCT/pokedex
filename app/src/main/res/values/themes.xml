@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Pokedex" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,70 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="Poke.CPI.HP" parent="Widget.MaterialComponents.CircularProgressIndicator">
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="trackColor">@color/gray</item>
-        <item name="android:max">255</item>
-        <item name="trackThickness">20dp</item>
-        <item name="trackCornerRadius">24dp</item>
-        <item name="indicatorColor">@color/progressBarColor_HP</item>
-    </style>
 
-    <style name="Poke.CPI.AT" parent="Widget.MaterialComponents.CircularProgressIndicator">
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="trackColor">@color/gray</item>
-        <item name="android:max">255</item>
-        <item name="trackThickness">20dp</item>
-        <item name="trackCornerRadius">24dp</item>
-        <item name="indicatorColor">@color/progressBarColor_Attack</item>
-    </style>
-
-    <style name="Poke.CPI.DF" parent="Widget.MaterialComponents.CircularProgressIndicator">
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="trackColor">@color/gray</item>
-        <item name="android:max">255</item>
-        <item name="trackThickness">20dp</item>
-        <item name="trackCornerRadius">24dp</item>
-        <item name="indicatorColor">@color/progressBarColor_Defense</item>
-    </style>
-
-    <style name="Poke.CPI.SA" parent="Widget.MaterialComponents.CircularProgressIndicator">
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="trackColor">@color/gray</item>
-        <item name="android:max">255</item>
-        <item name="trackThickness">20dp</item>
-        <item name="trackCornerRadius">24dp</item>
-        <item name="indicatorColor">@color/progressBarColor_SAttack</item>
-    </style>
-
-    <style name="Poke.CPI.SD" parent="Widget.MaterialComponents.CircularProgressIndicator">
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="trackColor">@color/gray</item>
-        <item name="android:max">255</item>
-        <item name="trackThickness">20dp</item>
-        <item name="trackCornerRadius">24dp</item>
-        <item name="indicatorColor">@color/progressBarColor_SDefense</item>
-    </style>
-
-    <style name="Poke.CPI.SP" parent="Widget.MaterialComponents.CircularProgressIndicator">
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="trackColor">@color/gray</item>
-        <item name="cornerRadius">24dp</item>
-        <item name="android:max">255</item>
-        <item name="trackThickness">20dp</item>
-        <item name="trackCornerRadius">24dp</item>
-        <item name="indicatorColor">@color/progressBarColor_Speed</item>
+    <style name="TextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>
