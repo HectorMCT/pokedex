@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.hector.pokedex.adapter.PokeClickListener
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
     private lateinit var binding: ActivityMainBinding
 
     private var pokeListAdapter = PokeListAdapter(this, ArrayList(), this)
-    private val layoutManage = GridLayoutManager(this,3)
+    private val layoutManage = GridLayoutManager(this,2)
 
     private var offset : Int = 0
     private var loading : Boolean = true
@@ -37,8 +38,8 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
 
         Log.e("TEST_POKE","CREATE: $loading")
         loading = true
-        obtenerDatosPokemon()
         setUpUI()
+        obtenerDatosPokemon()
 
     }
 

@@ -22,9 +22,9 @@ class PokeCardViewHolder(
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(cardViewHolder.spritePokemon)
 
-        cardViewHolder.moreBtn.setOnClickListener {
+        /*cardViewHolder.moreBtn.setOnClickListener {
             clickListener.onClick(pokemon)
-        }
+        }*/
         cardViewHolder.card.setOnClickListener {
             clickListener.onClick(pokemon)
         }

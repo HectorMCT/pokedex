@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -76,6 +77,15 @@ class PokeDetailActivity : AppCompatActivity() {
 
         binding.pokeName.text = pokeResponse.name
 
+        binding.hp.text = getString(R.string.st_hp, pokeResponse.stats.find { it.stat.name == "hp" }?.baseStat!!)
+        binding.at.text = getString(R.string.st_at, pokeResponse.stats.find { it.stat.name == "attack" }?.baseStat!!)
+        binding.df.text = getString(R.string.st_df, pokeResponse.stats.find { it.stat.name == "defense" }?.baseStat!!)
+        binding.sa.text = getString(R.string.st_sa, pokeResponse.stats.find { it.stat.name == "special-attack" }?.baseStat!!)
+        binding.sd.text = getString(R.string.st_sd, pokeResponse.stats.find { it.stat.name == "special-defense" }?.baseStat!!)
+        binding.sp.text = getString(R.string.st_sp, pokeResponse.stats.find { it.stat.name == "speed" }?.baseStat!!)
+
+        binding.pokeStats.visibility = View.VISIBLE
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.determinateLinearIndicatorHp.setProgress(pokeResponse.stats[0].baseStat, true)
             binding.determinateLinearIndicatorAt.setProgress(pokeResponse.stats[1].baseStat, true)
@@ -92,17 +102,12 @@ class PokeDetailActivity : AppCompatActivity() {
             binding.determinateLinearIndicatorSd.progress = pokeResponse.stats.find { it.stat.name == "speed" }?.baseStat!!
         }
 
-        binding.hp.text = getString(R.string.st_hp, pokeResponse.stats.find { it.stat.name == "hp" }?.baseStat!!)
-        binding.at.text = getString(R.string.st_at, pokeResponse.stats.find { it.stat.name == "attack" }?.baseStat!!)
-        binding.df.text = getString(R.string.st_df, pokeResponse.stats.find { it.stat.name == "defense" }?.baseStat!!)
-        binding.sa.text = getString(R.string.st_sa, pokeResponse.stats.find { it.stat.name == "special-attack" }?.baseStat!!)
-        binding.sd.text = getString(R.string.st_sd, pokeResponse.stats.find { it.stat.name == "special-defense" }?.baseStat!!)
-        binding.sp.text = getString(R.string.st_sp, pokeResponse.stats.find { it.stat.name == "speed" }?.baseStat!!)
-
         with(Glide.with(this@PokeDetailActivity)){
             load(pokeResponse.sprites.frontDefault).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFront)
             load(pokeResponse.sprites.frontShiny).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.spriteFrontShiny)
         }
+        binding.shiny.visibility = View.VISIBLE
+        binding.norm.visibility = View.VISIBLE
     }
 
     private fun callMoves(statID: Int){
