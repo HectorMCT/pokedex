@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.widget.SearchView
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.hector.pokedex.adapter.PokeClickListener
@@ -21,6 +21,12 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
+
+import es.dmoral.toasty.Toasty
+import android.graphics.Typeface.BOLD_ITALIC
+import org.hector.pokedex.R
+
+
 class MainActivity : AppCompatActivity(), PokeClickListener {
 
     private lateinit var binding: ActivityMainBinding
@@ -36,16 +42,13 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.e("TEST_POKE","CREATE: $loading")
         loading = true
         setUpUI()
         obtenerDatosPokemon()
-
     }
 
     //configuramos el RecyclerView
     private fun setUpUI(){
-        Log.e("TEST_POKE","UI: $offset")
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = layoutManage
@@ -73,28 +76,22 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
 
     private fun obtenerDatosPokemon() {
 
-        //Construcción de la instancia de retrofit
-        val retrofit = ApiClient.apiClient()
-
         //obteniendo la interfaz donde se define la API
-        val endpoint = retrofit.create(PokeListServices::class.java)
+        val endpoint = ApiClient.apiClient().create(PokeListServices::class.java)
 
         val pokeCall = endpoint.getPokemon(20, this.offset)
 
         pokeCall.enqueue(object : Callback<PokeList> {
             //imprimimos algo si no nos llegó respuesta
             override fun onFailure(call: Call<PokeList>, t: Throwable) {
-                Log.e("Error","Error: $t")
+                Toasty.custom(this@MainActivity, getString(R.string.error_conection), R.drawable.ic_clear_white_24dp, R.color.warningColor, Toast.LENGTH_LONG, true, true).show()
             }
 
             //mostramos los archivos solo si el resultado es 200
             override fun onResponse(call: Call<PokeList>, response: Response<PokeList>) {
-                Log.e("TEST_POKE","CALL: $response")
                 loading = true
                 if(response.isSuccessful) {
-
                     val pokeResponse = response.body()
-
                     if (pokeResponse != null) {
                         pokeResponse.results?.forEach {
                             it.name = it.name.substring(0, 1).uppercase(Locale.getDefault()) + it.name.substring(1)
@@ -102,9 +99,8 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
                         }
                         pokeListAdapter.addListPokemon(pokeResponse.results)
                     }
-
                 } else{
-                    Log.e("Not200","Error not 200: $response")
+                    Toasty.custom(this@MainActivity, getString(R.string.error_conection), R.drawable.ic_clear_white_24dp, R.color.warningColor, Toast.LENGTH_LONG, true, true).show()
                 }
             }
 
@@ -112,7 +108,6 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
     }
 
     override fun onClick(poke: Pokemon) {
-        Log.e("TEST_POKE","POKE: $poke")
         val intent = Intent(applicationContext, PokeDetailActivity::class.java)
         intent.putExtra(POKEMON_ID, poke.id)
         startActivity(intent)

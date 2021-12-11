@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.skydoves.rainbow.colorArray
 import com.skydoves.rainbow.rainbow
+import es.dmoral.toasty.Toasty
 import org.hector.pokedex.R
 import org.hector.pokedex.databinding.ActivityPokedetailBinding
 import org.hector.pokedex.data.model.POKEMON_ID
@@ -36,36 +37,31 @@ class PokeDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val pokeID :Int = intent.getIntExtra(POKEMON_ID, -1)
-        Toast.makeText(this, "POKEMON - URL: $pokeID", Toast.LENGTH_SHORT).show()
+
+        Toasty.custom(this@PokeDetailActivity, getString(R.string.who), R.drawable.ic_info_outline_white_24dp, R.color.infoColor, Toast.LENGTH_LONG, true, true).show()
         obtenerDatosPokemon(pokeID)
     }
 
     private fun obtenerDatosPokemon(pokemonID: Int) {
 
-        //Construcción de la instancia de retrofit
-        val retrofit = ApiClient.apiClient()
-
-        val endpoint = retrofit.create(PokeServices::class.java)
-
+        val endpoint = ApiClient.apiClient().create(PokeServices::class.java)
         val pokeCall = endpoint.getPokemon(pokemonID)
 
         pokeCall.enqueue(object : Callback<PokemonDetail> {
-            //imprimimos algo si no nos llegó respuesta
             override fun onFailure(call: Call<PokemonDetail>, t: Throwable) {
-                Log.e("Error","Error: $t")
+                Toasty.custom(this@PokeDetailActivity, getString(R.string.error_conection), R.drawable.ic_clear_white_24dp, R.color.warningColor, Toast.LENGTH_LONG, true, true).show()
             }
 
-            //mostramos los archivos solo si el resultado es 200
             override fun onResponse(call: Call<PokemonDetail>, response: Response<PokemonDetail>) {
                 if(response.isSuccessful) {
                     val pokeResponse = response.body()
                     if (pokeResponse != null) {
                         pokeResponse.name =  pokeResponse.name?.substring(0, 1)?.uppercase(Locale.getDefault()) + pokeResponse.name?.substring(1)
                         setUpUI(pokeResponse)
-                        Log.e("POKE-STAT", "STATS $pokeResponse")
+                        Toasty.custom(this@PokeDetailActivity, getString(R.string.it_is, pokeResponse.name), R.drawable.ic_check_white_24dp, R.color.successColor, Toast.LENGTH_LONG, true, true).show()
                     }
                 } else{
-                    Log.e("Not200","Error not 200: $response")
+                    Toasty.custom(this@PokeDetailActivity, getString(R.string.error_conection), R.drawable.ic_clear_white_24dp, R.color.warningColor, Toast.LENGTH_LONG, true, true).show()
                 }
             }
 
@@ -74,6 +70,7 @@ class PokeDetailActivity : AppCompatActivity() {
 
     private fun setUpUI(pokeResponse: PokemonDetail) {
 
+        //Setting the background color related to the pokemon types
         with(binding){
             if (pokeResponse.types.size == 1) {
                 val gradientDrawable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -113,12 +110,14 @@ class PokeDetailActivity : AppCompatActivity() {
         }
 
         with(binding) {
-            pokeName.text =
-                getString(R.string.poke_name, pokeResponse.order, pokeResponse.name)
+            //Pokemon name and number
+            pokeName.text = getString(R.string.poke_name, pokeResponse.order, pokeResponse.name)
 
+            //Pokemon height and weight
             peso.text = getString(R.string.peso, (pokeResponse.weight.toDouble() / 10))
             altura.text = getString(R.string.altura, (pokeResponse.height.toDouble() / 10))
 
+            //Pokemon base stats
             hp.text = getString(
                 R.string.st_hp,
                 pokeResponse.stats.find { it.stat.name == "hp" }?.baseStat!!
@@ -144,8 +143,8 @@ class PokeDetailActivity : AppCompatActivity() {
                 pokeResponse.stats.find { it.stat.name == "speed" }?.baseStat!!
             )
 
-            pokeStats.visibility = View.VISIBLE
-
+            //pokeStats.visibility = View.VISIBLE
+            //Setting progres bar from 0 to 255 related to the base stats
             dliHp.progress =
                 pokeResponse.stats.find { it.stat.name == "hp" }?.baseStat!!.toFloat()
             dliAt.progress =

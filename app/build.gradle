@@ -59,4 +59,7 @@ dependencies {
     // custom views
     implementation "com.github.skydoves:progressview:1.1.1"
     implementation "com.github.skydoves:rainbow:1.0.4"
+
+    //    Toasty
+    implementation 'com.github.GrenderG:Toasty:1.5.2'
 }

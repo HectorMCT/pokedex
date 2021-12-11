@@ -23,4 +23,7 @@
     <string name="normal">Normal</string>
     <string name="shiny">Shiny</string>
     <string name="search_title">Busqueda</string>
+    <string name="error_conection">No hay conexión con el Pokedex Central</string>
+    <string name="who">¿Quién es ese Pokémon?</string>
+    <string name="it_is">Es %1$s</string>
 </resources>

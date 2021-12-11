@@ -21,4 +21,8 @@
     <string name="normal">Normal</string>
     <string name="shiny">Shiny</string>
     <string name="search_title">Search</string>
+
+    <string name="error_conection">Central Pokedex - No connection</string>
+    <string name="who">Who is that Pokemon?</string>
+    <string name="it_is">Is %1$s</string>
 </resources>
