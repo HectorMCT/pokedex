@@ -1,19 +1,13 @@
 package org.hector.pokedex.ui
 
-import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.skydoves.rainbow.colorArray
-import com.skydoves.rainbow.rainbow
 import es.dmoral.toasty.Toasty
 import org.hector.pokedex.R
 import org.hector.pokedex.databinding.ActivityPokedetailBinding
@@ -29,7 +23,6 @@ import java.util.*
 class PokeDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPokedetailBinding
-    private val moves = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +37,10 @@ class PokeDetailActivity : AppCompatActivity() {
 
     private fun obtenerDatosPokemon(pokemonID: Int) {
 
-        val endpoint = ApiClient.apiClient().create(PokeServices::class.java)
-        val pokeCall = endpoint.getPokemon(pokemonID)
+        val pokeCall = ApiClient.apiClient().create(PokeServices::class.java).getPokemon(pokemonID)
 
         pokeCall.enqueue(object : Callback<PokemonDetail> {
+
             override fun onFailure(call: Call<PokemonDetail>, t: Throwable) {
                 Toasty.custom(this@PokeDetailActivity, getString(R.string.error_conection), R.drawable.ic_clear_white_24dp, R.color.warningColor, Toast.LENGTH_LONG, true, true).show()
             }

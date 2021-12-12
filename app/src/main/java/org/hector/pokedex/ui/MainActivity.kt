@@ -3,7 +3,6 @@ package org.hector.pokedex.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
-
-
 import es.dmoral.toasty.Toasty
-import android.graphics.Typeface.BOLD_ITALIC
 import org.hector.pokedex.R
 
 
@@ -77,9 +73,7 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
     private fun obtenerDatosPokemon() {
 
         //obteniendo la interfaz donde se define la API
-        val endpoint = ApiClient.apiClient().create(PokeListServices::class.java)
-
-        val pokeCall = endpoint.getPokemon(20, this.offset)
+        val pokeCall = ApiClient.apiClient().create(PokeListServices::class.java).getPokemon(20, this.offset)
 
         pokeCall.enqueue(object : Callback<PokeList> {
             //imprimimos algo si no nos llegó respuesta
@@ -111,5 +105,6 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
         val intent = Intent(applicationContext, PokeDetailActivity::class.java)
         intent.putExtra(POKEMON_ID, poke.id)
         startActivity(intent)
+        finish()
     }
 }
