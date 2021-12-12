@@ -18,6 +18,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:layout_margin="8dp"
+        android:fontFamily="@font/pokemon_solid"
         android:padding="8dp"
         android:textStyle="bold"/>
 
