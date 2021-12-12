@@ -14,12 +14,57 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/image_cl"
+        app:layout_constraintBottom_toTopOf="@id/type_one"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:layout_margin="8dp"
         android:padding="8dp"
         android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/type_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/poke_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/image_cl"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/type_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/poke_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/type_three"
+        app:layout_constraintBottom_toTopOf="@id/image_cl"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/type_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/poke_name"
+        app:layout_constraintStart_toEndOf="@+id/type_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/image_cl"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/image_cl"

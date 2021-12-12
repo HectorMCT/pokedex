@@ -105,6 +105,5 @@ class MainActivity : AppCompatActivity(), PokeClickListener {
         val intent = Intent(applicationContext, PokeDetailActivity::class.java)
         intent.putExtra(POKEMON_ID, poke.id)
         startActivity(intent)
-        finish()
     }
 }

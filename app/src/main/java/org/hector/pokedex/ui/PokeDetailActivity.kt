@@ -4,6 +4,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getColor
 import com.bumptech.glide.Glide
@@ -66,39 +67,52 @@ class PokeDetailActivity : AppCompatActivity() {
         //Setting the background color related to the pokemon types
         with(binding){
             if (pokeResponse.types.size == 1) {
-                val gradientDrawable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    GradientDrawable(
+                val types = arrayListOf(getTypeColor(pokeResponse.types[0].type.name))
+                typeOne.text = pokeResponse.types[0].type.name
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    val gradientDrawable = GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        intArrayOf(getColor(getTypeColor(pokeResponse.types[0].type.name)),
-                            getColor(getTypeColor(pokeResponse.types[0].type.name)))
+                        intArrayOf(getColor(types[0]), getColor(types[0]))
                     )
+                    pokeLayout.background = gradientDrawable
+                    typeOne.setBackgroundColor(getColor(types[0]))
                 } else {
-                    GradientDrawable(
+                    val gradientDrawable = GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         intArrayOf(
-                            getColor(this@PokeDetailActivity,getTypeColor(pokeResponse.types[0].type.name)),
-                            getColor(this@PokeDetailActivity,getTypeColor(pokeResponse.types[0].type.name)))
+                            getColor(this@PokeDetailActivity,types[0]),
+                            getColor(this@PokeDetailActivity,types[0]))
                     )
+                    pokeLayout.background = gradientDrawable
+                    typeOne.setBackgroundColor(getColor(this@PokeDetailActivity,types[0]))
                 }
-                gradientDrawable.cornerRadius = 0f
-                pokeLayout.background = gradientDrawable
+                typeOne.visibility = View.VISIBLE
             } else if (pokeResponse.types.size == 2) {
-                val gradientDrawable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    GradientDrawable(
+                typeTwo.text = pokeResponse.types[0].type.name
+                typeThree.text = pokeResponse.types[1].type.name
+                val types = arrayListOf(getTypeColor(pokeResponse.types[0].type.name), getTypeColor(pokeResponse.types[1].type.name))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    val gradientDrawable = GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
-                        intArrayOf(getColor(getTypeColor(pokeResponse.types[0].type.name)),
-                            getColor(getTypeColor(pokeResponse.types[1].type.name)))
+                        intArrayOf(getColor(types[0]), getColor(types[1]))
                     )
+                    pokeLayout.background = gradientDrawable
+                    typeTwo.setBackgroundColor(getColor(types[0]))
+                    typeThree.setBackgroundColor(getColor(types[1]))
                 } else {
-                    GradientDrawable(
+                    val gradientDrawable = GradientDrawable(
                         GradientDrawable.Orientation.TOP_BOTTOM,
                         intArrayOf(
-                            getColor(this@PokeDetailActivity,getTypeColor(pokeResponse.types[0].type.name)),
-                            getColor(this@PokeDetailActivity,getTypeColor(pokeResponse.types[1].type.name))
+                            getColor(this@PokeDetailActivity,types[0]),
+                            getColor(this@PokeDetailActivity,types[1])
                         )
                     )
+                    pokeLayout.background = gradientDrawable
+                    typeTwo.setBackgroundColor(getColor(this@PokeDetailActivity,types[0]))
+                    typeThree.setBackgroundColor(getColor(this@PokeDetailActivity,types[1]))
                 }
-                pokeLayout.background = gradientDrawable
+                typeTwo.visibility = View.VISIBLE
+                typeThree.visibility = View.VISIBLE
             }
         }
 
@@ -176,7 +190,7 @@ class PokeDetailActivity : AppCompatActivity() {
             "dragon" -> R.color.dragon
             "fairy" -> R.color.fairy
             "dark" -> R.color.dark
-            else -> R.color.gray_21
+            else -> R.color.gray
         }
     }
 }
