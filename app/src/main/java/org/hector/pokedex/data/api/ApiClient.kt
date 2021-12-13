@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object ApiClient {  //please use your own url
+object ApiClient {
 
     const val SPRITE_URL: String = "https://img.pokemondb.net/sprites/black-white/anim/normal/"
     private const val BASE_URL:String = "https://pokeapi.co/api/v2/"
