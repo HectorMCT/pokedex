@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {  //please use your own url
 
-    const val SPRITE_URL: String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+    const val SPRITE_URL: String = "https://img.pokemondb.net/sprites/black-white/anim/normal/"
     private const val BASE_URL:String = "https://pokeapi.co/api/v2/"
     private const val TIMEOUT_CALL_SECONDS = 1L
 

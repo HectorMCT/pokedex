@@ -1,5 +1,6 @@
 package org.hector.pokedex.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,18 +14,18 @@ class PokeCardViewHolder(
     private val clickListener: PokeClickListener
 ) : RecyclerView.ViewHolder(cardViewHolder.root){
 
+    @SuppressLint("SetTextI18n")
     fun bind(pokemon: Pokemon, context: Context){
         super.itemView
+        cardViewHolder.idPokemon.text = "#" + pokemon.id.toString()
         cardViewHolder.nombrePokemon.text = pokemon.name
         Glide.with(context)
-            .load(ApiClient.SPRITE_URL+pokemon.id+".png")
+            .load(ApiClient.SPRITE_URL+pokemon.name.lowercase()+".gif")
             .centerCrop()
+            .centerInside()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(cardViewHolder.spritePokemon)
 
-        /*cardViewHolder.moreBtn.setOnClickListener {
-            clickListener.onClick(pokemon)
-        }*/
         cardViewHolder.card.setOnClickListener {
             clickListener.onClick(pokemon)
         }
